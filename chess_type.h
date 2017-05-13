@@ -7,18 +7,21 @@
 
 #include <string>
 #include <vector>
-
+#include <string>
+using namespace std;
 struct Type {
-    string shape;
+    std::string shape;
     int score;
 };
 
 class CChessType {
 public:
-
     CChessType();
     ~CChessType();
-    int GetScore();
+    int GetScore(string line,bool is_change = false);
+
+private:
+    void Reverse(string s1, string s2, bool is_chenge);
 
 private:
     Type type[13];
