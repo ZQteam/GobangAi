@@ -8,6 +8,7 @@
 #include <string>
 #include <vector>
 #include <string>
+#include <cstring>
 using namespace std;
 struct Type {
     std::string shape;
@@ -18,10 +19,11 @@ class CChessType {
 public:
     CChessType();
     ~CChessType();
-    int GetScore(string line,bool is_change = false);
-
+    int GetScore(int x, int y, int board[16][16]);
 private:
+    int GetScore(string line, vector<int> & hit, bool is_change = false);
     void Reverse(string s1, string s2, bool is_chenge);
+    bool is_in_board(int x, int y);
 
 private:
     Type type[13];

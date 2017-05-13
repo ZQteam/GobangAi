@@ -3,6 +3,7 @@
 //
 
 #include "chess_type.h"
+
 using namespace std;
 CChessType::CChessType() {
     type[0].shape = "01100";
@@ -50,11 +51,54 @@ void CChessType::Reverse(string s1, string s2, bool is_change)
         }
     }
 }
-int CChessType::GetScore(string line,bool is_change) {
+int CChessType::GetScore(string line, vector<int> &hit, bool is_change) {
     string line2;
     Reverse(line, line2, is_change);
-    //for(int i=0;i<13;i++){
-    //
-    //}
+    int all_score = 0;
+    for(int i=0;i<13;i++){
+        if(line.find(type[i].shape) != string::npos || line2.find(type[i].shape) != string::npos){
+            hit.push_back(i);
+            all_score += type[i].score;
+        }
+    }
+    return all_score;
+}
+
+bool CChessType::is_in_board(int x, int y) {
+    if(x > 0 && x < 16 && y > 0 && y < 16)
+        return true;
+    return false;
+}
+
+int CChessType::GetScore(int x, int y, int board[16][16]) {
+    int startx = x - 4;
+    int starty = y - 4;
+    int endx = x + 4;
+    int endy = y + 4;
+    string str1 = "";
+    string str2 = "";
+    string str3 = "";
+    string str4 = "";
+    for(int i=startx, j=starty; i<=endx, j<=endy; i++,j++){
+        if(is_in_board(x,y)) {
+            str1 += board[x][y];
+        }
+    }
+    for(int i=startx, j=endy; i<=endx, j>=starty; i++,j--){
+        if(is_in_board(x,y)) {
+            str2 += board[x][y];
+        }
+    }
+    for(int i=startx,j=y; i<endx ; i++){
+        if(is_in_board(x,y)) {
+            str3 += board[x][y];
+        }
+    }
+    for(int i=x,j=starty; j<endy ; j++){
+        if(is_in_board(x,y)) {
+            str3 += board[x][y];
+        }
+    }
     return 0;
 }
+
