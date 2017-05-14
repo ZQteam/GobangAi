@@ -11,11 +11,16 @@ CBoard::CBoard(bool IsAiFirst)
     m_ManRecord.clear();
     m_IsAiFirstOffensive = IsAiFirst;
     m_IsAiSet = IsAiFirst;
+    for(int i=0;i<16;i++){
+        for(int j=0;j<16;j++){
+            m_Board[i][j] = '0';
+        }
+    }
 }
 
 CBoard::~CBoard(){}
 
-void CBoard::GetBoard(int board[16][16])
+void CBoard::GetBoard(char board[16][16])
 {
     for(int i=1; i<16; i++){
         for(int j=1; j<16; j++){
@@ -28,12 +33,12 @@ void CBoard::SetChessman(point s)
 {
     if(m_IsAiSet){
         m_AiRecord.push_back(s);
-        m_Board[s.x][s.y] = m_IsAiFirstOffensive ? 1 : 2;
+        m_Board[s.x][s.y] = m_IsAiFirstOffensive ? '1' : '2';
         m_IsAiSet = false;
     }
     else{
         m_ManRecord.push_back(s);
-        m_Board[s.x][s.y] = m_IsAiFirstOffensive ? 2 : 1;
+        m_Board[s.x][s.y] = m_IsAiFirstOffensive ? '2' : '1';
         m_IsAiSet = true;
     }
 }

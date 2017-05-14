@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <string>
+#include <cstring>
 using namespace std;
 
 struct point
@@ -21,13 +22,13 @@ class CBoard
 public:
     CBoard(bool IsAiFirst = false);
     ~CBoard();
-    void GetBoard(int board[16][16]);
+    void GetBoard(char board[16][16]);
     void SetChessman(point s);
     void SetChessman(int x,int y);
     int GoBack();
 
 private:
-    int m_Board[16][16];
+    char m_Board[16][16];
     vector<point> m_AiRecord;
     vector<point> m_ManRecord;
     bool m_IsAiFirstOffensive;

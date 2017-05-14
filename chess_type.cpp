@@ -51,13 +51,13 @@ void CChessType::Reverse(string s1, string s2, bool is_change)
         }
     }
 }
-int CChessType::GetScore(string line, vector<int> &hit, bool is_change) {
+int CChessType::GetScore(string line, set<int> &hit, bool is_change) {
     string line2;
     Reverse(line, line2, is_change);
     int all_score = 0;
     for(int i=0;i<13;i++){
         if(line.find(type[i].shape) != string::npos || line2.find(type[i].shape) != string::npos){
-            hit.push_back(i);
+            hit.insert(i);
             all_score += type[i].score;
         }
     }
@@ -70,35 +70,51 @@ bool CChessType::is_in_board(int x, int y) {
     return false;
 }
 
-int CChessType::GetScore(int x, int y, int board[16][16]) {
+int CChessType::GetScore(int x, int y, char board[16][16], bool is_change) {
     int startx = x - 4;
     int starty = y - 4;
     int endx = x + 4;
     int endy = y + 4;
+    cout << startx << " " << starty << " " << endx << " " << endy << endl;
     string str1 = "";
     string str2 = "";
     string str3 = "";
     string str4 = "";
+    set<int> s1; s1.clear();
+    set<int> s2; s2.clear();
+    set<int> s3; s3.clear();
+    set<int> s4; s4.clear();
+
     for(int i=startx, j=starty; i<=endx, j<=endy; i++,j++){
-        if(is_in_board(x,y)) {
-            str1 += board[x][y];
+        if(is_in_board(i,j)) {
+            str1 += board[i][j];
         }
     }
+    int ss1 = GetScore(str1, s1, is_change);
     for(int i=startx, j=endy; i<=endx, j>=starty; i++,j--){
-        if(is_in_board(x,y)) {
-            str2 += board[x][y];
+        if(is_in_board(i,j)) {
+            str2 += board[i][j];
         }
     }
-    for(int i=startx,j=y; i<endx ; i++){
-        if(is_in_board(x,y)) {
-            str3 += board[x][y];
+    int ss2 = GetScore(str2, s2, is_change);
+    for(int i=startx,j=y; i<=endx ; i++){
+        if(is_in_board(i,j)) {
+            str3 += board[i][j];
         }
     }
-    for(int i=x,j=starty; j<endy ; j++){
-        if(is_in_board(x,y)) {
-            str3 += board[x][y];
+    int ss3 = GetScore(str3, s3, is_change);
+    for(int i=x,j=starty; j<=endy ; j++){
+        if(is_in_board(i,j)) {
+            str4 += board[i][j];
         }
     }
-    return 0;
+    int ss4 = GetScore(str4, s4, is_change);
+
+    cout << str1 << " " << ss1 << endl;
+    cout << str2 << " " << ss2 << endl;
+    cout << str3 << " " << ss3 << endl;
+    cout << str4 << " " << ss4 << endl;
+
+    return ss1+ss2+ss3+ss4;
 }
 

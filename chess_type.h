@@ -9,6 +9,9 @@
 #include <vector>
 #include <string>
 #include <cstring>
+#include <iostream>
+#include <set>
+
 using namespace std;
 struct Type {
     std::string shape;
@@ -19,10 +22,10 @@ class CChessType {
 public:
     CChessType();
     ~CChessType();
-    int GetScore(int x, int y, int board[16][16]);
+    int GetScore(int x, int y, char board[16][16], bool is_change = false);
 private:
-    int GetScore(string line, vector<int> & hit, bool is_change = false);
-    void Reverse(string s1, string s2, bool is_chenge);
+    int GetScore(string line, set<int> & hit, bool is_change);
+    void Reverse(string s1, string s2, bool is_change);
     bool is_in_board(int x, int y);
 
 private:
