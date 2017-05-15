@@ -11,9 +11,13 @@ int main() {
     a.SetChessman(7,7);
     a.SetChessman(1,1);
     a.SetChessman(6,6);
+    vector<point> ok_point;
+    a.GetDfsPoint(ok_point);
+    auto it = ok_point.begin();
+
     a.GetBoard(b);
     int score = c.GetScore(5,5,b);
-    cout << score << endl;
+
     for(int i=1; i<16; i++){
         for(int j=1; j<16; j++){
             cout << b[i][j] << " ";

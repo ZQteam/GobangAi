@@ -23,6 +23,7 @@ public:
     CChessType();
     ~CChessType();
     int GetScore(int x, int y, char board[16][16], bool is_change = false);
+    int GetPosScore(int x,int y);
 private:
     int GetScore(string line, set<int> & hit, bool is_change);
     void Reverse(string s1, string s2, bool is_change);

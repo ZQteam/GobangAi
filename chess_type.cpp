@@ -118,3 +118,8 @@ int CChessType::GetScore(int x, int y, char board[16][16], bool is_change) {
     return ss1+ss2+ss3+ss4;
 }
 
+int CChessType::GetPosScore(int x, int y) {
+    int Max = max(abs(8-x),abs(8-y));
+    return 8 - Max;
+}
+

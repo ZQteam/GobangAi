@@ -62,3 +62,35 @@ int CBoard::GoBack()
     }
     return -1;
 }
+
+void CBoard::GetDfsPoint(vector<point> &DfsPoint) {
+    point ok_point;
+    int f[24][2] = {{0,1},{0,2},{0,-1},{0,-2},
+                    {1,0},{1,1},{1,2},{1,-1},{1,-2},
+                    {2,0},{2,1},{2,2},{2,-1},{2,-2},
+                    {-1,0},{-1,1},{-1,2},{-1,-1},{-1,-2},
+                    {-2,0},{-2,1},{-2,2},{-2,-1},{-2,-2}};
+    for(int i=1; i<16; i++){
+        for(int j=1; j<16; j++){
+            bool is_ok = false;
+            for(int k=0; k<24; k++){
+                int x = i + f[k][0];
+                int y = j + f[k][1];
+                if(x > 0 && x < 16 && y > 0 && y < 16 && (m_Board[x][y] == '1' || m_Board[x][y] == '2')){
+                    is_ok = true;
+                    break;
+                }
+            }
+            if(is_ok && m_Board[i][j] == '0') {
+                ok_point.x = i;
+                ok_point.y = j;
+                DfsPoint.push_back(ok_point);
+            }
+        }
+    }
+    return ;
+}
+
+void CBoard::SetChessman(int x, int y, char flag) {
+    m_Board[x][y] = flag;
+}
