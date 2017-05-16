@@ -4,19 +4,7 @@
 
 #include "Board.h"
 using namespace std;
-CBoard::CBoard(bool IsAiFirst)
-{
-    //初始化记录表 用于记录棋路
-    m_AiRecord.clear();
-    m_ManRecord.clear();
-    m_IsAiFirstOffensive = IsAiFirst;
-    m_IsAiSet = IsAiFirst;
-    for(int i=0;i<16;i++){
-        for(int j=0;j<16;j++){
-            m_Board[i][j] = '0';
-        }
-    }
-}
+CBoard::CBoard(){}
 
 CBoard::~CBoard(){}
 
@@ -25,6 +13,19 @@ void CBoard::GetBoard(char board[16][16])
     for(int i=1; i<16; i++){
         for(int j=1; j<16; j++){
             board[i][j] = m_Board[i][j];
+        }
+    }
+}
+
+void CBoard::Init(bool IsAiFirst) {
+    //初始化记录表 用于记录棋路
+    m_AiRecord.clear();
+    m_ManRecord.clear();
+    m_IsAiFirstOffensive = IsAiFirst;
+    m_IsAiSet = IsAiFirst;
+    for(int i=0;i<16;i++){
+        for(int j=0;j<16;j++){
+            m_Board[i][j] = '0';
         }
     }
 }
@@ -94,3 +95,4 @@ void CBoard::GetDfsPoint(vector<point> &DfsPoint) {
 void CBoard::SetChessman(int x, int y, char flag) {
     m_Board[x][y] = flag;
 }
+

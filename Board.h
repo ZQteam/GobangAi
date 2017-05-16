@@ -22,8 +22,9 @@ struct point
 class CBoard
 {
 public:
-    CBoard(bool IsAiFirst = false);
+    CBoard();
     ~CBoard();
+    void Init(bool IsAiFirst = false);
     void GetBoard(char board[16][16]);
     void SetChessman(point s);
     void SetChessman(int x,int y);
