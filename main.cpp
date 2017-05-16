@@ -1,5 +1,5 @@
 #include <iostream>
-#include "AI.h"
+#include "Board.h"
 #include "chess_type.h"
 using namespace std;
 int main() {

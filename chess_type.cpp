@@ -7,31 +7,33 @@
 using namespace std;
 CChessType::CChessType() {
     type[0].shape = "01100";
-    type[0].score = 1;
+    type[0].score = 20;
     type[1].shape = "01010";
-    type[1].score = 1;
+    type[1].score = 20;
     type[2].shape = "010010";
-    type[2].score = 1;
+    type[2].score = 15;
     type[3].shape = "211000";
-    type[3].score = 1;
+    type[3].score = 5;
     type[4].shape = "21010";
-    type[4].score = 1;
+    type[4].score = 5;
     type[5].shape = "210010";
-    type[5].score = 1;
+    type[5].score = 3;
     type[6].shape = "01110";
-    type[6].score = 1;
+    type[6].score = 100;
     type[7].shape = "010110";
-    type[7].score = 1;
+    type[7].score = 100;
     type[8].shape = "211100";
-    type[8].score = 1;
+    type[8].score = 50;
     type[9].shape = "211010";
-    type[9].score = 1;
+    type[9].score = 50;
     type[10].shape = "011110";
-    type[10].score = 1;
+    type[10].score = 1000;
     type[11].shape = "10111";
-    type[11].score = 1;
+    type[11].score = 300;
     type[12].shape = "211110";
-    type[12].score = 1;
+    type[12].score = 300;
+    type[13].shape = "11111";
+    type[13].score = 1000000;
 }
 
 CChessType::~CChessType() {
@@ -55,7 +57,7 @@ int CChessType::GetScore(string line, set<int> &hit, bool is_change) {
     string line2;
     Reverse(line, line2, is_change);
     int all_score = 0;
-    for(int i=0;i<13;i++){
+    for(int i=0;i<14;i++){
         if(line.find(type[i].shape) != string::npos || line2.find(type[i].shape) != string::npos){
             hit.insert(i);
             all_score += type[i].score;

@@ -30,7 +30,7 @@ private:
     bool is_in_board(int x, int y);
 
 private:
-    Type type[13];
+    Type type[14];
 };
 
 #endif //UNTITLED_CHESS_TYPE_H
